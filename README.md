@@ -1,2 +1,2 @@
-# CRM
+# djcrm
 Django crm
