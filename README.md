@@ -1,2 +1,3 @@
 # djcrm
-Django crm
+CRM website with django
+
