@@ -1,12 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-<a href="{% url 'leads:lead-list' %}">Go back to leads</a>
-<hr />
-<h1>This is the details of {{ lead.first_name }}</h1>
-<p>This persons age: {{ lead.age }}</p>
-<p>The agent responsible for this lead is : {{ lead.agent }} </p>
-<hr />
-<a href="{% url 'leads:lead-update' lead.pk %}">Update</a>
-<a href="{% url 'leads:lead-delete' lead.pk %}">Delete</a>
+    <a href="{% url 'leads:lead-list' %}">Go back to leads</a>
+    <hr />
+    <div class="card">
+        <div class="card-body text-center">
+            <h3 class="card-title">{{ lead.first_name }}{{ lead.last_name }}</h3>
+            <p>Location: dummy location</p>
+            <p>Cell phone: +324893284924</p>
+            <p>Age: {{ lead.age }}</p>
+            <p>Agent: {{ lead.agent }} </p>
+            <p>Category: {{ lead.category }}</p>
+            {% if request.user.is_organisor %}
+                <a href="{% url 'leads:lead-update' lead.pk %}">
+                    <button class="btn btn-dark">Update</button>
+                </a>
+                <a href="{% url 'leads:lead-delete' lead.pk %}">
+                    <button class="btn btn-dark ms-2">Delete</button>
+                </a>
+            {% endif %}
+        </div>
+    </div>
 {% endblock content %}

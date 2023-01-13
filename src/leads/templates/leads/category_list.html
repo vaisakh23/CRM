@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="">
+        <div class="text-center">
+            <h1>Categories</h1>
+            <p>These categories segment the leads</p>
+        </div>
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Count</th>
+            </tr>
+            {% for category in categories %}
+            <tr>
+                <td>
+                    <a href="{% url 'leads:category-detail' category.id %}">{{ category.name }}</a>
+                </td>
+                <td>{{ category.lead_set.count }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

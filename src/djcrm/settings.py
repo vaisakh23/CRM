@@ -26,7 +26,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'leads'
+    'crispy_forms',
+    'crispy_bootstrap5',
+    
+    'users',
+    'agents',
+    'leads',
 ]
 
 MIDDLEWARE = [
@@ -113,7 +118,14 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom user model
-AUTH_USER_MODEL = 'leads.User'
+AUTH_USER_MODEL = 'users.User'
 
 # Console email backend
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_REDIRECT_URL = "/leads"
+LOGOUT_REDIRECT_URL = "/login"
+LOGIN_URL = "/login"
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

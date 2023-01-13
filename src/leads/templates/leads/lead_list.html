@@ -1,12 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-<a href="{% url 'leads:lead-create' %}">Create a new lead</a>
-<hr />
-<h1>This is all of our leads</h1>
-{% for lead in leads %}
-<div class="lead">
-    <a href="{% url 'leads:lead-detail' lead.pk %}">{{ lead.first_name }} {{ lead.last_name }}</a>. Age: {{ lead.age }}
-</div>
-{% endfor %}
+    {% if request.user.is_organisor %}
+        <a href="{% url 'leads:lead-create' %}">
+            <button class="btn btn-dark">New lead</button>
+        </a>
+    {% endif %}
+    <a href="{% url 'leads:category-list' %}">
+        <button class="btn btn-dark ms-3">Lead categories</button>
+    </a>
+    <hr/>
+    <h1>Leads</h1>
+    {% for lead in leads %}
+        <div class="card mt-2" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ lead.first_name }}{{ lead.last_name }}</h5>
+                <p class="card-text">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+                <a href="{% url 'leads:lead-detail' lead.pk %}" class="btn btn-dark btn-sm">View this lead</a>
+            </div>
+        </div>
+    {% endfor %}
+    <hr>
+    <h1>Unassigned leads</h1>
+    {% if unassigned_leads %}
+        {% for lead in unassigned_leads %}
+            <div class="card mt-2" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ lead.first_name }}{{ lead.last_name }}</h5>
+                    <p class="card-text">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+                    <a href="{% url 'leads:assign-agent' lead.pk %}" class="btn btn-dark btn-sm">Assign agent</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
 {% endblock content %}

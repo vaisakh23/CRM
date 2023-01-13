@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <a href="{% url 'agents:agent-create' %}">Create a new agent</a>
+    <hr />
+    <h1>Agents</h1>
+    {% for agent in agents %}
+        <div class="card mt-2" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ agent.user.username }}</h5>
+                <p class="card-text">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+                <a href="{% url 'agents:agent-detail' agent.id %}" class="btn btn-dark btn-sm">View agent</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}

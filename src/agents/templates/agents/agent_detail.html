@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <a href="{% url 'agents:agent-list' %}">Go back to agents</a>
+    <hr />
+    <div class="card">
+        <div class="card-body text-center">
+            <h3 class="card-title">{{ agent.user.username }}</h3>
+            <p>Location: dummy location</p>
+            <p>Cell phone: +324893284924</p>
+            <p>email: {{ agent.user.email }}</p>
+            <p>Organisation: {{ agent.organisation }}</p>
+            {% if request.user.is_organisor %}
+            <a href="{% url 'agents:agent-update' agent.id %}">
+                <button class="btn btn-dark">Update</button>
+            </a>
+            <a href="{% url 'agents:agent-delete' agent.id %}">
+                <button class="btn btn-dark">Delete</button>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

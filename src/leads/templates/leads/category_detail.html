@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <h1 class="mb-4">{{ category.name }} leads</h1>
+        {% for lead in category.lead_set.all %}
+            <div class="card mt-2" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ lead.first_name }}{{ lead.last_name }}</h5>
+                    <p class="card-text">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+                    <a href="{% url 'leads:category-update' lead.id %}">
+                        <button class="btn btn-dark btn-sm">update category</button>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

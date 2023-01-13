@@ -6,5 +6,7 @@ from leads.views import LandingPageView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', LandingPageView.as_view(), name='landing-page'),
+    path('', include('users.urls', namespace="users")),
     path('leads/', include('leads.urls', namespace="leads")),
+    path('agents/', include('agents.urls', namespace="agents")),
 ]

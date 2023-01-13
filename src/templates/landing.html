@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>landing page</h1>
+    <center>
+        <h1>Landing page of DJCRM</h1>
+        <a href="{% url 'users:login' %}">
+            <button class="btn btn-dark mt-3">Login</button>
+        </a>
+    </center>
 {% endblock %}

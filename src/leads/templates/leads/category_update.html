@@ -2,9 +2,9 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<a href="{% url 'leads:lead-list' %}">Go back to leads</a>
+<a href="{% url 'leads:category-list' %}">Go back to categories</a>
 <hr />
-<h1>Create a new lead</h1>
+<h1>Update category of this lead</h1>
 <form method="post">
     {% csrf_token %}
     {{ form|crispy }}
